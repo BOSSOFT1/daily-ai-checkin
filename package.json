@@ -1,0 +1,16 @@
+{
+  "name": "daily-ai-checkin",
+  "version": "1.0.0",
+  "description": "内部轻社交化、强互动的每日AI打卡平台",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "pg": "^8.11.0"
+  },
+  "license": "MIT"
+}
