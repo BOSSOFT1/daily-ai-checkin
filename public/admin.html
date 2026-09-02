@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>每日AI打卡 · 管理后台</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="brand-logo">⚙</span><span class="brand-name">管理后台</span></div>
+      <nav class="nav">
+        <a href="/" class="nav-link">返回前台</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- 登录 -->
+    <section id="adminLogin" class="block" style="margin-top:18px">
+      <h2 class="page-title">管理后台登录</h2>
+      <input id="adminPwd" class="form-input" type="password" placeholder="请输入管理员密码" />
+      <button class="btn" id="adminLoginBtn">登录</button>
+      <div class="form-err" id="adminLoginErr"></div>
+    </section>
+
+    <!-- 面板 -->
+    <section id="adminPanel" style="display:none">
+      <div class="block">
+        <div class="block-title">页面视觉配置（Banner 轮播）</div>
+        <div class="banner-preview" id="bannerPreview"></div>
+        <input id="bannerFiles" type="file" accept="image/*" multiple />
+        <div class="form-hint">可上传多张图片，首页轮播展示。</div>
+        <label class="form-label">Banner 标题文字</label>
+        <input id="bannerTitleInput" class="form-input" maxlength="20" />
+        <button class="btn" id="saveBanner">保存 Banner 配置</button>
+      </div>
+
+      <div class="block">
+        <div class="block-title">打卡提醒推送（钉钉 / 企微）</div>
+        <label class="form-label">推送类型</label>
+        <select id="reminderType" class="form-input">
+          <option value="">未启用</option>
+          <option value="dingtalk">钉钉机器人</option>
+          <option value="wecom">企业微信机器人</option>
+        </select>
+        <label class="form-label">Webhook 地址</label>
+        <input id="reminderWebhook" class="form-input" placeholder="https://..." />
+        <button class="btn" id="saveReminder">保存提醒配置</button>
+        <button class="btn btn-ghost" id="testReminder">发送测试提醒</button>
+        <div class="form-hint" id="reminderHint"></div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">以「行政君」身份发布</div>
+        <textarea id="officialText" class="form-input" rows="3" placeholder="官方公告内容..."></textarea>
+        <label class="form-label">图片（最多 3 张）</label>
+        <input id="officialImage" type="file" accept="image/*" multiple />
+        <button class="btn btn-gold" id="officialPost">发布（带官方金色徽章）</button>
+      </div>
+
+      <div class="block">
+        <div class="block-title">本月排行榜</div>
+        <div class="lb-stats" id="lbStats"></div>
+        <div class="lb-list" id="lbList"></div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">数据概览与导出</div>
+        <button class="btn btn-ghost" id="exportBtn">导出打卡明细 Excel(CSV)</button>
+        <button class="btn btn-ghost" id="exportSummaryBtn">导出月度达标汇总 Excel(CSV)</button>
+        <div class="form-hint">可按工号/姓名在下方搜索查询全员打卡明细。</div>
+        <input id="searchInput" class="form-input" placeholder="搜索 真实姓名 / 工号" />
+        <div class="admin-table-wrap"><table class="admin-table" id="adminTable"></table></div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">社区内容管理（删除 / 隐藏）</div>
+        <div class="admin-table-wrap"><table class="admin-table" id="adminCheckinTable"></table></div>
+      </div>
+
+      <button class="btn btn-ghost" id="adminLogout">退出登录</button>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+  <script src="/admin.js"></script>
+</body>
+</html>
