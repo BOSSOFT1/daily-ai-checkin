@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>每日AI打卡</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" id="brandHome">
+        <span class="brand-logo">✦</span>
+        <span class="brand-name" id="brandTitle">每日AI打卡</span>
+      </div>
+      <nav class="nav">
+        <a data-view="wall" class="nav-link active">动态墙</a>
+        <a data-view="me" class="nav-link">我的</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- 动态墙视图 -->
+    <section id="view-wall" class="view">
+      <div class="banner" id="banner">
+        <div class="banner-track" id="bannerTrack"></div>
+        <div class="banner-overlay">
+          <h1 id="bannerTitle">每日AI打卡</h1>
+          <p>用 AI 提效，每天进步一点点</p>
+        </div>
+        <div class="banner-dots" id="bannerDots"></div>
+      </div>
+
+      <div class="progress-card" id="progressCard" style="display:none">
+        <div class="progress-head">
+          <div>
+            <span class="progress-name" id="progressName"></span>
+            <span class="badge-official" id="progressOfficial" style="display:none">官方</span>
+          </div>
+          <span class="progress-days" id="progressDays"></span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-tip" id="progressTip"></div>
+      </div>
+
+      <div class="feed" id="feed"></div>
+      <div class="empty" id="feedEmpty" style="display:none">还没有人打卡，快来当第一个吧！</div>
+    </section>
+
+    <!-- 我的视图 -->
+    <section id="view-me" class="view" style="display:none">
+      <div id="meGuest" class="empty">未登录，请先在「动态墙」点击「今日打卡」完成身份登记。</div>
+      <div id="mePanel" style="display:none">
+        <div class="profile-card">
+          <img class="profile-avatar" id="meAvatar" alt="" />
+          <div>
+            <div class="profile-name"><span id="meName"></span><span class="badge-official" id="meOfficial" style="display:none">官方</span></div>
+            <div class="profile-sub" id="meSub"></div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">我的本月进度</div>
+          <div class="progress-bar lg"><div class="progress-fill" id="meFill"></div></div>
+          <div class="progress-tip" id="meTip"></div>
+        </div>
+
+        <div class="block">
+          <div class="block-title">个人设置</div>
+          <label class="form-label">发布昵称 / 花名</label>
+          <input id="setName" class="form-input" maxlength="20" placeholder="如：产品小A" />
+          <div class="form-err" id="setNameErr"></div>
+          <label class="form-label">头像（可选）</label>
+          <input id="setAvatar" type="file" accept="image/*" />
+          <div class="form-hint">修改昵称后，下次打卡自动生效；已发布的记录显示名不会变更。</div>
+          <button class="btn" id="saveSettings">保存设置</button>
+        </div>
+
+        <div class="block">
+          <div class="block-title">我的打卡记录</div>
+          <div class="my-list" id="myList"></div>
+          <div class="empty" id="myEmpty" style="display:none">你还没有打卡记录。</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 底部操作栏 -->
+  <footer class="bottombar">
+    <button class="bottom-btn primary" id="btnCheckin">今日打卡</button>
+    <button class="bottom-btn" id="btnMyRecord">我的发布记录</button>
+  </footer>
+
+  <!-- 发布 / 登记 弹窗 -->
+  <div class="modal-mask" id="modalMask" style="display:none">
+    <div class="modal">
+      <div class="modal-head">
+        <span id="modalTitle">今日打卡</span>
+        <span class="modal-close" id="modalClose">✕</span>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- 评论已改为卡片内联展开，不再使用弹窗 -->
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
