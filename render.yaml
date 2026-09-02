@@ -1,0 +1,22 @@
+# Render 一键部署配置（连接 GitHub 仓库后自动识别）
+# 重要（免费版 free 的限制）：
+#   1) 免费版不支持持久磁盘(disk)，所以运行时写入的数据(db.json / 上传图片)
+#      会在每次重新部署或实例休眠冷启动后被重置。
+#   2) 免费实例在 15 分钟无访问后会休眠，下次访问需冷启动(~30s)。
+#   若需要数据长期留存，请改用付费磁盘，或把数据层接到外部数据库
+#   (如 Supabase 免费 Postgres)。本配置保持零依赖、可直接免费跑起来。
+services:
+  - type: web
+    name: daily-ai-checkin
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    envVars:
+      - key: NODE_VERSION
+        value: "18"
+      - key: ADMIN_PASSWORD   # 后台密码，部署后在 Render 控制台自行设置（不要留空）
+        sync: false
+      - key: DATABASE_URL     # Supabase Postgres 连接串，部署后在 Render 控制台填入（持久化必填）
+        sync: false
